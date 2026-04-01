@@ -206,9 +206,7 @@
         }
 
         .menu-item-price {
-            font-size: 2rem;
-            color: var(--primary);
-            font-weight: 550;
+            display: none !important; /* Fiyatlar gizlendi */
         }
 
         .menu-item-desc {
@@ -302,11 +300,7 @@
         }
 
         .modal-price {
-            font-size: 2rem;
-            color: var(--primary);
-            margin-bottom: 20px;
-            font-weight: 500;
-            display: block;
+            display: none !important; /* Fiyatlar gizlendi */
         }
 
         .modal-desc {
@@ -380,6 +374,95 @@
 
             .modal-title {
                 font-size: 1.8rem;
+            }
+        }
+
+        .premium-menu-banner {
+            background: linear-gradient(135deg, rgba(200, 169, 126, 0.05), rgba(0, 0, 0, 0.9));
+            border: 1px solid rgba(200, 169, 126, 0.3);
+            border-radius: 12px;
+            padding: 25px 35px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 50px;
+            margin-top: -20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+        }
+
+        .premium-menu-banner::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 50%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(200, 169, 126, 0.15), transparent);
+            transform: skewX(-20deg);
+            animation: shine 4s ease-in-out infinite;
+        }
+
+        @keyframes shine {
+            0% { left: -100%; }
+            50% { left: 200%; }
+            100% { left: 200%; }
+        }
+
+        .premium-menu-banner:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 45px rgba(200, 169, 126, 0.2);
+            border-color: rgba(200, 169, 126, 0.8);
+        }
+
+        .banner-text h3 {
+            color: var(--primary);
+            font-size: 2.4rem;
+            margin-bottom: 8px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .banner-text p {
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        .banner-btn {
+            background: var(--primary);
+            color: #000;
+            padding: 14px 28px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .premium-menu-banner:hover .banner-btn {
+            background: #fff;
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .premium-menu-banner {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+                padding: 25px 20px;
+            }
+            .banner-text h3 {
+                font-size: 2rem;
+            }
+            .banner-btn {
+                width: 100%;
+                justify-content: center;
             }
         }
     </style>
@@ -461,6 +544,16 @@
     <!-- Main Content -->
     <main class="menu-page">
         <div class="menu-container">
+
+            <a href="https://m.kolaymenum.com.tr/LZQGWY6/k" target="_blank" class="premium-menu-banner">
+                <div class="banner-text">
+                    <h3>İnteraktif Fiyatlı Menümüz</h3>
+                    <p>Siparişlerinizi ve en güncel fiyatlarımızı hemen inceleyin.</p>
+                </div>
+                <div class="banner-btn">
+                    <ion-icon name="restaurant-outline"></ion-icon> Menüyü Aç
+                </div>
+            </a>
 
             <div class="menu-categories">
                 <button class="category-btn active" data-category="all">Tümü</button>

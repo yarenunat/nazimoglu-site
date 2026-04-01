@@ -1,0 +1,17 @@
+# IDE ve Sistem Dosyaları
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Node.js Bağımlılıkları
+node_modules/
+
+# Veritabanı
+reservations.db
+*.sqlite
+*.sqlite3
+
+# Log veya Ortam Dosyaları
+*.log
+.env

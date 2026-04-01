@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anasayfa | Nazımoğlu</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=DM+Sans:wght@400;700&family=Forum&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="./assets/css/contact.css">
+
+    <!-- Favicon -->
+    <link rel="icon" href="./assets/images/1991.png" type="image/x-icon">
+
+    <!-- Preload Image -->
+    <link rel="preload" as="image" href="./assets/images/hero-slider-1.jpg">
+
+</head>
+
+<body id="top">
+
+    <!-- Preload -->
+    <div class="preload" data-preaload>
+        <div class="circle"></div>
+        <p class="text">Nazımoglu</p>
+    </div>
+
+    <!-- Header -->
+    <header class="header" data-header>
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="./assets/images/nazimoglu-logo.png" width="260" height="50" alt="Nazımoğlu - Anasayfa">
+            </a>
+
+            <nav class="navbar" data-navbar>
+                <button class="close-btn" aria-label="close menu" data-nav-toggler>
+                    <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+                </button>
+
+                <a href="index.html" class="logo">
+                    <img src="./assets/images/nazimoglu-logo.png" width="160" height="50" alt="Nazımoğlu - Anasayfa">
+                </a>
+
+                <ul class="navbar-list">
+                    <li class="navbar-item">
+                        <a href="about.html" class="navbar-link hover-underline">
+                            <div class="separator"></div>
+                            <span class="span">Hakkımızda</span>
+                        </a>
+                    </li>
+                    <li class="navbar-item">
+                        <a href="menu.html" class="navbar-link hover-underline">
+                            <div class="separator"></div>
+                            <span class="span">Menü</span>
+                        </a>
+                    </li>
+                    <li class="navbar-item">
+                        <a href="index.html" class="navbar-link hover-underline">
+                            <div class="separator"></div>
+                            <span class="span">Anasayfa</span>
+                        </a>
+                    </li>
+                    <li class="navbar-item">
+                        <a href="reservation.html" class="navbar-link hover-underline">
+                            <div class="separator"></div>
+                            <span class="span">Rezervasyon</span>
+                        </a>
+                    </li>
+                    <li class="navbar-item">
+                        <a href="contact.html" class="navbar-link hover-underline active">
+                            <div class="separator"></div>
+                            <span class="span">İLETİŞİM</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <a href="kesfet.html" class="btn btn-secondary">
+                <span class="text text-1">Keşfet</span>
+                <span class="text text-2" aria-hidden="true">Tıkla</span>
+            </a>
+
+            <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
+                <span class="line line-1"></span>
+                <span class="line line-2"></span>
+                <span class="line line-3"></span>
+            </button>
+
+            <div class="overlay" data-nav-toggler data-overlay></div>
+        </div>
+    </header>
+
+    <!-- Ana İçerik -->
+    <main>
+
+
+        <section class="contact-form">
+            <h4 class="sectionHeader">Bize Ulaşın</h4>
+            <h1 class="heading">İletişime Geçin!</h1>
+            <p class="para">
+                Her türlü öneri, istek veya şikayetleriniz bizim için çok değerli. Hizmet kalitemizi artırmak adına
+                görüşlerinizi bizimle paylaşabilirsiniz.
+            </p>
+            <div class="contactForm">
+                <form id="contactForm" onsubmit="sendMail(event)">
+                    <!-- Bildirim alanı -->
+    <div id="form-message" class="form-message" style="display: none;"></div>
+
+    <style>
+       .form-message {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    font-size: 1.4rem;
+    text-align: center;
+}
+
+.form-message.success {
+    background-color: rgba(40, 167, 69, 0.2);
+    color: #28a745;
+    border: 1px solid #28a745;
+}
+
+.form-message.error {
+    background-color: rgba(220, 53, 69, 0.2);
+    color: #dc3545;
+    border: 1px solid #dc3545;
+} 
+    </style>
+    <script>
+        function sendMail(e) {
+            e.preventDefault();
+            const form = e.target;
+            const ad = form.querySelector('[name="ad"]').value;
+            const konu = form.querySelector('[name="konu"]').value;
+            const mesaj = form.querySelector('[name="mesaj"]').value;
+            
+            const mailtoLink = `mailto:nazimoglucag@gmail.com?subject=${encodeURIComponent(konu)}&body=${encodeURIComponent("Gönderen: " + ad + "\n\n" + mesaj)}`;
+            window.location.href = mailtoLink;
+            
+            const messageDiv = document.getElementById("form-message");
+            messageDiv.innerHTML = "Lütfen açılan mail uygulamasından mesajınızı e-posta uygulamanız (Outlook/Mail) üzerinden gönderin.";
+            messageDiv.className = "form-message success";
+            messageDiv.style.display = "block";
+            form.reset();
+            
+            setTimeout(() => {
+                messageDiv.style.display = "none";
+            }, 8000);
+        }
+    </script>
+                    <h1 class="sub-heading">Yardımcı Olmamızı İster misiniz?</h1>
+                    <p class="para para2">
+                        Rezervasyon, sipariş veya memnuniyetle ilgili her konuda bize ulaşın. En kısa sürede geri dönüş
+                        yapacağız.
+                    </p>
+                    <input type="text" class="input" name="ad" placeholder="Adınız Soyadınız" required>
+                    <input type="email" class="input" name="email" placeholder="E-posta Adresiniz" required>
+                    <input type="text" class="input" name="konu" placeholder="Konu" required>
+                    <textarea class="input" name="mesaj" cols="30" rows="5"
+                        placeholder="Bize iletmek istediğiniz düşünceleri bu kutuya yazabilirsiniz..."
+                        required></textarea>
+                    <input type="submit" class="input submit" value="Gönder">
+                </form>
+
+                <div class="map-container">
+                    <div class="mapBg"></div>
+                    <div class="map">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3652.31398205049!2d29.516900276415363!3d40.09312407527103!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cbc90005035291%3A0x8e9b3ab691789476!2zTmF6xLFtb2dsdSBDYcSfIEtlYmFw!5e1!3m2!1sen!2str!4v1746024904049!5m2!1sen!2str"
+                            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Yenilenmiş İletişim Bilgileri Bölümü -->
+            <div class="contact-methods-container">
+                <div class="contact-card">
+                    <div class="contact-icon-wrapper">
+                        <img src="./assets/images/location.png" alt="Konum İkonu" class="contact-icon">
+                    </div>
+                    <div class="contact-content">
+                        <h3 class="contact-title">Adresimiz</h3>
+                        <p class="contact-detail">Ertuğrul Gazi Mah. Cadde Boyu Sok. No:4<br>Bursa / İnegöl<br>Nova Park
+                            AVM Karşısı</p>
+                        <div class="contact-actions">
+                            <a href="https://maps.app.goo.gl/e8MECybxomcbtdx69" class="contact-action-btn map-btn">
+                                <i class="fa-solid fa-map-location-dot"></i> Haritada Göster
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon-wrapper">
+                        <img src="./assets/images/mail.png" alt="E-posta İkonu" class="contact-icon">
+                    </div>
+                    <div class="contact-content">
+                        <h3 class="contact-title">E-Posta</h3>
+                        <p class="contact-detail">nazimoglucag@gmail.com</p>
+                        <div class="contact-actions">
+                            <a href="mailto:nazimoglucag@gmail.com" class="contact-action-btn email-btn">
+                                <i class="fa-solid fa-paper-plane"></i> Mail Gönder
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon-wrapper">
+                        <img src="./assets/images/phone.png" alt="Telefon İkonu" class="contact-icon">
+                    </div>
+                    <div class="contact-content">
+                        <h3 class="contact-title">Telefon</h3>
+                        <p class="contact-detail">0505 394 82 25</p>
+                        <div class="contact-actions">
+                            <a href="tel:+905053948225" class="contact-action-btn call-btn">
+                                <i class="fa-solid fa-phone"></i> Hemen Ara
+                            </a>
+                            <a href="https://wa.me/905053948225" class="contact-action-btn whatsapp-btn">
+                                <i class="fa-brands fa-whatsapp"></i> WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <style>
+                /* Yenilenmiş İletişim Stilleri */
+                .contact-methods-container {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                    gap: 25px;
+                    margin: 150px auto;
+                    max-width: 1200px;
+                    padding: 0 10px;
+                }
+
+                .contact-card {
+                    background: rgba(255, 255, 255, 0.03);
+                    border-radius: 16px;
+                    padding: 30px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    text-align: center;
+                    transition: all 0.3s ease;
+                    border: 1px solid rgba(255, 215, 0, 0.15);
+                    backdrop-filter: blur(10px);
+                }
+
+                .contact-card:hover {
+                    transform: translateY(-5px);
+                    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+                    border-color: rgba(255, 215, 0, 0.3);
+                }
+
+                .contact-icon-wrapper {
+                    width: 70px;
+                    height: 70px;
+                    background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), transparent);
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin-bottom: 20px;
+                    color: var(--gold-crayola);
+                }
+
+                .contact-icon {
+                    width: 35px;
+                    height: 35px;
+                    object-fit: contain;
+                    /* SVG'nin orantılı şekilde içeriğe sığmasını sağlar */
+                    filter: brightness(0) invert(1);
+                    /* Altın renginde görünmesi için filtre uygular */
+                    opacity: 0.5;
+                }
+
+                .contact-content {
+                    flex: 1;
+                    width: 100%;
+                }
+
+                .contact-title {
+                    font-size: 1.4rem;
+                    color: var(--white);
+                    margin-bottom: 15px;
+                    font-weight: 500;
+                    position: relative;
+                    display: inline-block;
+                }
+
+                .contact-title::after {
+                    content: '';
+                    position: absolute;
+                    bottom: -8px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    width: 50px;
+                    height: 2px;
+                    background: var(--gold-crayola);
+                }
+
+                .contact-detail {
+                    color: rgba(255, 255, 255, 0.8);
+                    margin-bottom: 15px;
+                    font-size: 1.2rem;
+                    min-height: 40px;
+                }
+
+                .contact-actions {
+                    gap: 10px;
+                    display: flex;
+                    margin-bottom: 5px;
+                    justify-content: center;
+                    flex-wrap: wrap;
+                }
+
+                .contact-action-btn {
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 8px;
+                    padding: 10px 18px;
+                    border-radius: 8px;
+                    font-size: 1.2rem;
+                    font-weight: 500;
+                    transition: all 0.3s ease;
+                    text-decoration: none;
+                }
+
+                .map-btn {
+                    background: rgba(255, 215, 0, 0.1);
+                    color: var(--gold-crayola);
+                    border: 1px solid var(--gold-crayola);
+                }
+
+                .email-btn {
+                    background: rgba(255, 215, 0, 0.1);
+                    color: var(--gold-crayola);
+                    border: 1px solid var(--gold-crayola);
+                }
+
+                .call-btn {
+                    background: rgba(255, 215, 0, 0.1);
+                    color: var(--gold-crayola);
+                    border: 1px solid var(--gold-crayola);
+                }
+
+                .whatsapp-btn {
+                    background: rgba(255, 215, 0, 0.1);
+                    color: var(--gold-crayola);
+                    border: 1px solid var(--gold-crayola);
+                }
+
+                .map-btn:hover {
+                    background: var(--gold-crayola);
+                    color: #111;
+                }
+
+                .email-btn:hover {
+                    background: var(--gold-crayola);
+                    color: white;
+                }
+
+                .call-btn:hover {
+                    background: var(--gold-crayola);
+                    color: white;
+                }
+
+                .whatsapp-btn:hover {
+                    background: var(--gold-crayola);
+                    color: white;
+                }
+
+                /* Responsive Tasarım */
+                @media (max-width: 768px) {
+                    .contact-methods-container {
+                        grid-template-columns: 1fr;
+                    }
+
+                    .contact-card {
+                        padding: 25px 20px;
+                    }
+
+                    .contact-actions {
+                        flex-direction: column;
+                        gap: 8px;
+                    }
+
+                    .contact-action-btn {
+                        width: 100%;
+                        justify-content: center;
+                    }
+                }
+            </style>
+
+
+            <!-- FOOTER -->
+            <footer class="footer">
+                <style>
+                    .footer {
+                        margin-top: 50px;
+                        background-color: #0f0f0f;
+                        color: #fff;
+                        padding: 50px 0 20px;
+                        font-size: 13px;
+                    }
+
+                    .footer-container {
+                        max-width: 1200px;
+                        margin: 0 auto;
+                        padding: 0 20px;
+                    }
+
+                    .footer-grid {
+                        display: grid;
+                        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                        gap: 30px;
+                        margin-bottom: 40px;
+                    }
+
+                    .footer-logo {
+                        margin-bottom: 20px;
+                    }
+
+                    .footer-logo img {
+                        width: 160px;
+                        height: auto;
+                        filter: brightness(0) invert(1);
+                    }
+
+                    .footer-title {
+                        color: #cea63ac2;
+                        font-size: 15px;
+                        margin-bottom: 20px;
+                        font-weight: 500;
+                    }
+
+                    .footer-links {
+                        list-style: none;
+                        padding: 0;
+                    }
+
+                    .footer-links li {
+                        margin-bottom: 12px;
+                    }
+
+                    .footer-links a {
+                        color: #ddd;
+                        text-decoration: none;
+                        transition: all 0.3s ease;
+                    }
+
+                    .footer-links a:hover {
+                        color: #c9a74d;
+                        padding-left: 5px;
+                    }
+
+                    .social-media {
+                        display: flex;
+                        gap: 15px;
+                        margin-top: 20px;
+                    }
+
+                    .social-icon {
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 50%;
+                        background-color: #333;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        transition: all 0.3s ease;
+                    }
+
+                    .social-icon:hover {
+                        background-color: #c9a74d;
+                        transform: translateY(-3px);
+                    }
+
+                    .social-icon img {
+                        width: 20px;
+                        height: 20px;
+                        filter: brightness(0) invert(1);
+                    }
+
+                    .footer-bottom {
+                        border-top: 1px solid #333;
+                        padding-top: 20px;
+                        text-align: center;
+                        color: #999;
+                        font-size: 13px;
+                    }
+
+                    @media (max-width: 768px) {
+                        .footer-grid {
+                            grid-template-columns: 1fr;
+                        }
+                    }
+                </style>
+
+                <div class="footer-container">
+                    <div class="footer-grid">
+                        <div class="footer-col">
+                            <div class="footer-logo">
+                                <img src="./assets/images/nazimoglu-logo.png" alt="Nazımoğlu">
+                            </div>
+                            <p style="color: #999; line-height: 1.6;">1991'den beri Erzurum'dan gelen lezzetlerle
+                                hizmetinizdeyiz.</p>
+                            <div class="social-media">
+                                <a href="https://www.yemeksepeti.com/restaurant/m3am/nazimoglu-cag-kebap"
+                                    class="social-icon" target="_blank">
+                                    <img src="assets/images/yemeksepeti.png" alt="Facebook">
+                                </a>
+                                <a href="https://www.instagram.com/nazimoglucagkebap/" class="social-icon"
+                                    target="_blank">
+                                    <img src="assets/images/instagram (1).png" alt="Instagram">
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="footer-col">
+                            <h3 class="footer-title">Hızlı Linkler</h3>
+                            <ul class="footer-links">
+                                <li><a href="index.html">Anasayfa</a></li>
+                                <li><a href="about.html">Hakkımızda</a></li>
+                                <li><a href="menu.html">Menü</a></li>
+                                <li><a href="reservation.html">Rezervasyon</a></li>
+                                <li><a href="contact.html">İletişim</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="footer-col">
+                            <h3 class="footer-title">İletişim</h3>
+                            <ul class="footer-links">
+                                <li><a href="tel:+905053948225">0505 394 82 25</a></li>
+                                <li><a href="mailto:info@nazimoglu.com">info@nazimoglu.com</a></li>
+                                <li>Ertuğrul Gazi Mah. Cadde Boyu Sok. No:4<br>Bursa / İnegöl<br>Nova Park AVM
+                                    Karşısı<br>İnegöl/Bursa</li>
+                            </ul>
+                        </div>
+
+                        <div class="footer-col">
+                            <h3 class="footer-title">Çalışma Saatleri</h3>
+                            <ul class="footer-links">
+                                <li>Pazartesi - Cuma<br>10:00 - 23:00</li>
+                                <li>Cumartesi - Pazar<br>11:00 - 00:00</li>
+                            </ul>
+                        </div>
+                    </div>
+
+
+
+                    <div class="footer-bottom">
+                        <p>© 2025 Nazımoğlu. Tüm hakları saklıdır. </p>
+                    </div>
+                </div>
+            </footer>
+
+
+    <!-- JavaScript Dosyaları -->
+    <script src="./assets/js/script.js"></script>
+    <script src="assets/js/speech.js"></script>
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+    <!-- Ionicons -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>

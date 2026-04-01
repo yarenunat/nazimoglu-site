@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Keşfet | Nazımoğlu</title>
+  <link rel="icon" href="./assets/images/1991.png" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: hsla(210, 4%, 11%, 1);
+      color: hsl(38, 61%, 73%);
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+      position: relative;
+      padding-top: 20px;
+    }
+
+    .back-button {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: hsl(38, 61%, 73%);
+      color: rgb(0, 0, 0);
+      border: none;
+      padding: 12px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 400;
+      transition: all 0.3s;
+      text-decoration: none;
+      display: inline-block;
+      z-index: 100;
+    }
+
+    .back-button:hover {
+      background-color: hsl(38, 61%, 73%);
+      transform: translateY(-50%) scale(1.05);
+      box-shadow: 0 5px 15px rgba(187, 153, 88, 0.4);
+    }
+
+    .page-title {
+      color: hsl(38, 61%, 73%);
+      font-size: 36px;
+      margin: 0;
+      font-weight: 400;
+      letter-spacing: 1px;
+    }
+
+    .slider-container {
+      position: relative;
+      width: 100%;
+      max-width: 1200px;
+      height: 95vh;
+      margin: 0 auto;
+      overflow: hidden;
+      border-radius: 15px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+      flex-grow: 1;
+    }
+
+    .slider {
+      display: flex;
+      transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+      height: 100%;
+      width: 100%;
+    }
+
+    .slide {
+      min-width: 100%;
+      position: relative;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .slide-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 40%;
+      background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 30px;
+      color: white;
+    }
+
+    .slide-title {
+      font-size: 2.2rem;
+      margin: 0 0 10px 0;
+      color: hsl(38, 61%, 73%);
+      font-weight: 500;
+      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s ease 0.3s;
+    }
+
+    .slide-desc {
+      font-size: 1.1rem;
+      margin: 0;
+      color: rgba(255, 255, 255, 0.9);
+      max-width: 70%;
+      line-height: 1.5;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s ease 0.4s;
+    }
+
+    .slide.active .slide-title,
+    .slide.active .slide-desc {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .slider-nav {
+      display: flex;
+      justify-content: center;
+      margin-top: 25px;
+    }
+
+    .slider-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: rgba(187, 153, 88, 0.4);
+      margin: 0 8px;
+      cursor: pointer;
+      transition: all 0.4s;
+      position: relative;
+    }
+
+    .slider-dot::after {
+      content: '';
+      position: absolute;
+      top: -5px;
+      left: -5px;
+      right: -5px;
+      bottom: -5px;
+      border: 1px solid hsl(38, 61%, 73%);
+      border-radius: 50%;
+      opacity: 0;
+      transition: all 0.3s;
+    }
+
+    .slider-dot:hover::after {
+      opacity: 0.5;
+    }
+
+    .slider-dot.active {
+      background-color: hsl(38, 61%, 73%);
+      transform: scale(1.3);
+    }
+
+    .slider-dot.active::after {
+      opacity: 0.3;
+    }
+
+    .slider-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 60px;
+      height: 60px;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: hsl(38, 61%, 73%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 24px;
+      z-index: 10;
+      transition: all 0.3s;
+      backdrop-filter: blur(3px);
+      border: 1px solid rgba(187, 153, 88, 0.3);
+    }
+
+    .slider-arrow:hover {
+      background-color: rgba(0, 0, 0, 0.7);
+      color: hsl(38, 61%, 73%);
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    .slider-arrow.left {
+      left: 30px;
+    }
+
+    .slider-arrow.right {
+      right: 30px;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 30px;
+      color: rgba(187, 153, 88, 0.6);
+      font-size: 14px;
+      padding: 20px 0;
+    }
+
+    @media (max-width: 768px) {
+      .slider-container {
+        height: 60vh;
+        border-radius: 10px;
+      }
+
+      .slide-overlay {
+        padding: 20px;
+        height: 50%;
+      }
+
+      .slide-title {
+        font-size: 1.8rem;
+      }
+
+      .slide-desc {
+        font-size: 1rem;
+        max-width: 100%;
+      }
+
+      .slider-arrow {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+      }
+
+      .slider-arrow.left {
+        left: 15px;
+      }
+
+      .slider-arrow.right {
+        right: 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+      <a href="index.html" class="back-button">&#8592; Geri Dön</a>
+      <h1 class="page-title">Keşfet</h1>
+    </div>
+
+    <div class="slider-container">
+      <div class="slider">
+        <div class="slide active">
+          <img src="./assets/images/keşfet/gece.jpeg" alt="Nazımoğlu Restoran İç Mekan">
+          <div class="slide-overlay">
+            <h3 class="slide-title">Nazımoğlu Deneyimi</h3>
+            <p class="slide-desc">Modern ve geleneksel tasarımın mükemmel uyumu. Misafirlerimiz için özenle hazırlanmış
+              konforlu atmosferimiz.</p>
+          </div>
+        </div>
+        <div class="slide">
+          <img src="./assets/images/keşfet/20250223_145559.jpg" alt="Nazımoğlu Özel Yemek">
+          <div class="slide-overlay">
+            <h3 class="slide-title">Şehrin Kalbinde Bir Kaçamak</h3>
+            <p class="slide-desc">Günlük koşuşturmacadan uzaklaşıp, huzur dolu bir yemek molası verebileceğiniz bir sığınak</p>
+          </div>
+        </div>
+        <div class="slide">
+          <img src="./assets/images/keşfet/ss.jpeg" alt="Yemek Keyfi">
+          <div class="slide-overlay">
+            <h3 class="slide-title">Dostlarınızla Keyifli Bir Mola</h3>
+            <p class="slide-desc">Güler yüzlü hizmetimiz ve samimi ortamımızla, evinizdeki gibi hissedeceksiniz</p>
+          </div>
+        </div>
+        <div class="slide">
+          <img src="./assets/images/keşfet/IMG-20250222-WA0038.jpg" alt="Taze Malzemeler">
+          <div class="slide-overlay">
+            <h3 class="slide-title">Aile Sofralarına Özel</h3>
+            <p class="slide-desc">Sevdiklerinizle paylaşabileceğiniz, bol çeşitli geleneksel kebap menüleri</p>
+          </div>
+        </div>
+        <div class="slide">
+          <img src="./assets/images/keşfet/20250223_150957.jpg" alt="Yemek Keyfi">
+          <div class="slide-overlay">
+            <h3 class="slide-title">En Taze Malzemeler</h3>
+            <p class="slide-desc">Yöresel üreticilerden özenle seçilmiş, mevsimine uygun en taze malzemeler.</p>
+          </div>
+        </div>
+        <div class="slide">
+          <img src="./assets/images/keşfet/gül.jpeg" alt="Yemek Keyfi">
+          <div class="slide-overlay">
+            <h3 class="slide-title">Unutulmaz Bir Akşam</h3>
+            <p class="slide-desc">Sevdiklerinizle birlikte unutulmaz anlar yaşayacağınız özel bir akşam yemeği.</p>
+          </div>
+        </div>
+        <div class="slide">
+          <img src="./assets/images/keşfet/asa1.png" alt="Yemek Keyfi">
+          <div class="slide-overlay">
+            <h3 class="slide-title">Lüks Sunum</h3>
+            <p class="slide-desc">Göz alıcı sunumlarla taçlandırılmış, eşsiz tatlar sizi bekliyor.</p>
+          </div>
+        </div>
+        
+      </div>
+
+      <div class="slider-arrow left"><i class="fas fa-chevron-left"></i></div>
+      <div class="slider-arrow right"><i class="fas fa-chevron-right"></i></div>
+    </div>
+
+    <div class="slider-nav">
+      <div class="slider-dot active"></div>
+      <div class="slider-dot"></div>
+      <div class="slider-dot"></div>
+      <div class="slider-dot"></div>
+      <div class="slider-dot"></div>
+      <div class="slider-dot"></div>
+      <div class="slider-dot"></div>
+    </div>
+
+    <div class="footer">
+      <p>© 2025 Nazımoğlu. Tüm hakları saklıdır.</p>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const slider = document.querySelector('.slider');
+      const slides = document.querySelectorAll('.slide');
+      const dots = document.querySelectorAll('.slider-dot');
+      const arrowLeft = document.querySelector('.slider-arrow.left');
+      const arrowRight = document.querySelector('.slider-arrow.right');
+
+      let currentIndex = 0;
+      let isTransitioning = false;
+      const slideCount = slides.length;
+      let slideInterval;
+
+      // Aktif slaytı güncelle
+      function updateActiveSlide(index) {
+        slides.forEach((slide, i) => {
+          slide.classList.toggle('active', i === index);
+        });
+
+        dots.forEach((dot, i) => {
+          dot.classList.toggle('active', i === index);
+        });
+      }
+
+      // Slider'ı hareket ettir
+      function goToSlide(index) {
+        if (isTransitioning) return;
+
+        isTransitioning = true;
+        currentIndex = (index + slideCount) % slideCount;
+        slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+        // Yeni slayt aktif hale gelince animasyon başlat
+        setTimeout(() => {
+          updateActiveSlide(currentIndex);
+          isTransitioning = false;
+        }, 800);
+      }
+
+      // Sonraki slayt
+      function nextSlide() {
+        goToSlide(currentIndex + 1);
+      }
+
+      // Önceki slayt
+      function prevSlide() {
+        goToSlide(currentIndex - 1);
+      }
+
+      // Oklara tıklama eventleri
+      arrowRight.addEventListener('click', nextSlide);
+      arrowLeft.addEventListener('click', prevSlide);
+
+      // Dot'lara tıklama eventleri
+      dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+          if (index !== currentIndex) {
+            goToSlide(index);
+          }
+        });
+      });
+
+      // Otomatik slider geçişi
+      function startAutoSlide() {
+        slideInterval = setInterval(nextSlide, 6000);
+      }
+
+      // Slider üzerine gelince otomatik geçişi durdur
+      slider.addEventListener('mouseenter', () => {
+        clearInterval(slideInterval);
+      });
+
+      // Slider'dan çıkınca otomatik geçişi başlat
+      slider.addEventListener('mouseleave', startAutoSlide);
+
+      // Klavye kontrolleri
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') {
+          nextSlide();
+        } else if (e.key === 'ArrowLeft') {
+          prevSlide();
+        }
+      });
+
+      // Dokunmatik ekran desteği
+      let touchStartX = 0;
+      let touchEndX = 0;
+
+      slider.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+        clearInterval(slideInterval);
+      }, { passive: true });
+
+      slider.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+        startAutoSlide();
+      }, { passive: true });
+
+      function handleSwipe() {
+        const difference = touchStartX - touchEndX;
+        if (difference > 50) {
+          nextSlide();
+        } else if (difference < -50) {
+          prevSlide();
+        }
+      }
+
+      // Başlangıçta ilk slaytı aktif yap ve otomatik geçişi başlat
+      updateActiveSlide(0);
+      startAutoSlide();
+    });
+  </script>
+</body>
+
+</html>

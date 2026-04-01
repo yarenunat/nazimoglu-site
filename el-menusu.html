@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Menüsü | Nazımoğlu</title>
+    <link rel="icon" href="./assets/images/1991.png" type="image/x-icon">
+    <style>
+        body {
+            font-family:Poppins;
+            margin: 0;
+            padding: 0;
+            background-color: hsla(210, 4%, 11%, 1);
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .back-button {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: hsl(38, 61%, 73%);;
+            color: rgb(0, 0, 0);
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+            font-weight: 400;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        @media (max-width: 768px) {
+               .back-button{
+                   margin-top: 400px;
+               }
+            }
+        
+        .back-button:hover {
+            background-color: hsl(38, 61%, 73%);;
+            transform: translateY(-50%) scale(1.05);
+        }
+        
+        .menu-title {
+            color: hsl(38, 61%, 73%);;
+            font-size: 36px;
+            margin: 0;
+            font-weight: 400;
+        }
+        
+        .image-container {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(224, 224, 224, 0.1);
+        }
+        
+        .menu-image {
+            width: 100%;
+            max-height: 800px;
+            object-fit: contain;
+            display: block;
+            transition: all 0.3s ease;
+        }
+        
+        .zoom-hint {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: hsl(38, 61%, 73%);
+            color: rgb(0, 0, 0);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            opacity: 0;
+            transition: all 0.3s ease;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+        
+        .magnifier-icon {
+            display: inline-block;
+            margin-right: 6px;
+            font-size: 16px;
+        }
+        
+        .image-container:hover .menu-image {
+            transform: scale(1.02);
+        }
+        
+        .image-container:hover .zoom-hint {
+            opacity: 1;
+            bottom: 30px;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #666;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="back-button">&#8592; Geri Dön</a>
+            <h1 class="menu-title">El Menümüz</h1>
+        </div>
+        
+        <div class="image-container">
+            <img src="./assets/images/el-menusu.jpg" alt="Restoran El Menüsü" class="menu-image">
+            <div class="zoom-hint">
+                <span class="magnifier-icon">⌕</span>Büyütmek için tıklayın
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>© 2025 Nazımoğlu. Tüm hakları saklıdır.</p>
+        </div>
+    </div>
+
+    <script>
+        // Resme tıklayınca tam ekran yapma
+        document.querySelector('.menu-image').addEventListener('click', function() {
+            if (document.fullscreenElement) {
+                document.exitFullscreen();
+            } else {
+                this.requestFullscreen().catch(err => {
+                    alert('Tam ekran hatası: ' + err.message);
+                });
+            }
+        });
+    </script>
+    <script src="assets/js/speech.js"></script>
+</body>
+
+</html>

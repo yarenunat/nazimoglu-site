@@ -845,7 +845,8 @@ body {
   width: 130px;
   height: 110px;
   padding: 20px;
-  transform: rotate(45deg);
+  transform: scale(0.6);
+  transform-origin: bottom right;
 }
 
 .hero-btn img {
@@ -904,6 +905,20 @@ body {
   transform: scale(1.05);
   /* Hover efekti */
   background-color: hsl(38, 61%, 73%);
+}
+
+@media (max-width: 768px) {
+  .hero-btn, .baklava-btn {
+    position: relative !important;
+    bottom: auto;
+    right: auto;
+    transform: scale(0.9);
+    margin: 20px auto 0;
+  }
+  .hero-btn img {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
 }
 
 .slider-reveal {
@@ -1041,6 +1056,7 @@ body {
    */
   .hero-btn {
     transform: scale(0.7);
+    transform-origin: bottom right;
   }
 
 
@@ -1224,6 +1240,7 @@ body {
       bottom: 50px;
       right: 50px;
       transform: scale(1);
+      transform-origin: bottom right;
     }
   }
 
